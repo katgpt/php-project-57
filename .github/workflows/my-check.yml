@@ -1,53 +1,35 @@
 name: my-check
 
 on:
-  push:
-    branches: [ "main" ]
   pull_request:
-    branches: [ "main" ]
-
-permissions:
-  contents: read
+  push:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
     steps:
-    - uses: actions/checkout@v3
-    - name: Set up PHP
-          uses: shivammathur/setup-php@v2
-          with:
-            php-version: '8.1'
-            coverage: xdebug
-    - name: Validate composer.json and composer.lock
-      run: composer validate --strict
-
-    - name: Cache Composer packages
-      id: composer-cache
-      uses: actions/cache@v3
+    - uses: actions/checkout@v2
+    - name: Setup PHP without composer
+      uses: shivammathur/setup-php@v2
       with:
-        path: vendor
-        key: ${{ runner.os }}-php-${{ hashFiles('**/composer.lock') }}
-        restore-keys: |
-          ${{ runner.os }}-php-
+        php-version: '7.2'
+        tools: none
+    - name: PHP Security Checker
+      uses: StephaneBour/actions-php-security-checker@1.1
 
-    - name: Install dependencies
-      run: composer install --prefer-dist --no-progress
+    - name: Setup project
+      run: make setup
 
-    - name: Validate composer.json
-      run: make validate
-
-    - name: Run linter
+    - name: Check lint
       run: make lint
 
-    - name: Run test & publish code coverage
-      uses: paambaati/codeclimate-action@v5.0.0
-      # Add Code Climate secret key
+    - name: Execute tests via PHPUnit
+      run: make test-coverage
+    - name: Show test coverage
+      uses: paambaati/codeclimate-action@v3.0.0
       env:
         CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
         coverageCommand: make test-coverage
-        coverageLocations: ${{github.workplace}}/build/logs/clover.xml:clover
+        coverageLocations: ${{ github.workplace }}/build/logs/clover.xml:clover
         debug: true
