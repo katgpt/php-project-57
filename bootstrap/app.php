@@ -1,5 +1,7 @@
 <?php
 
+use Dotenv\Dotenv;
+
 /*
 |--------------------------------------------------------------------------
 | Create The Application
@@ -14,6 +16,10 @@
 $app = new Illuminate\Foundation\Application(
     $_ENV['APP_BASE_PATH'] ?? dirname(__DIR__)
 );
+
+// Load environment variables from .env file
+$dotenv = Dotenv::createImmutable(__DIR__.'/../');
+$dotenv->load();
 
 /*
 |--------------------------------------------------------------------------
