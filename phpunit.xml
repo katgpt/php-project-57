@@ -31,6 +31,6 @@
         <env name="TELESCOPE_ENABLED" value="false"/>
     </php>
     <logging>
-        <log type="coverage-clover" target="build/logs/clover.xml"/>
+        <logging type="coverage-clover" target="build/logs/clover.xml"/>
     </logging>
 </phpunit>
