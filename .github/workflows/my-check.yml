@@ -1,33 +1,35 @@
 name: Test Coverage
 
-on: [push, pull_request]
+on:
+  pull_request:
+  push:
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-
     steps:
-    - name: Checkout code
-      uses: actions/checkout@v2
-
-    - name: Set up PHP
+    - uses: actions/checkout@v2
+    - name: Setup PHP without composer
       uses: shivammathur/setup-php@v2
       with:
         php-version: '8.3'
+        tools: none
+    - name: PHP Security Checker
+      uses: StephaneBour/actions-php-security-checker@1.1
 
-    - name: Install dependencies
-      run: composer install
+    - name: Setup project
+      run: make setup
 
-    - name: Run tests with coverage
-      run: |
-        export xdebug_mode=coverage
-        vendor/bin/phpunit --coverage-clover=coverage.xml
+    - name: Check lint
+      run: make lint
 
-    - name: Upload coverage to Codecov
-      uses: codecov/codecov-action@v2
+    - name: Execute tests via PHPUnit
+      run: make test-coverage
+    - name: Show test coverage
+      uses: paambaati/codeclimate-action@v3.0.0
+      env:
+        CC_TEST_REPORTER_ID: ${{ secrets.CC_TEST_REPORTER_ID }}
       with:
-        file: ./coverage.xml
-        flags: unittests
-        name: codecov-umbrella
-        fail_ci_if_error: true
-        
+        coverageCommand: make test-coverage
+        coverageLocations: ${{ github.workplace }}/build/logs/clover.xml:clover
+        debug: true
