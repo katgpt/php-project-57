@@ -20,7 +20,7 @@ jobs:
 
     - name: Run tests with coverage
       run: |
-        export XDEBUG_MODE=coverage
+        export xdebug_mode=coverage
         vendor/bin/phpunit --coverage-clover=coverage.xml
 
     - name: Upload coverage to Codecov
