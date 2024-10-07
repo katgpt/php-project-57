@@ -7,13 +7,15 @@
     "require": {
         "php": "^8.3",
         "guzzlehttp/guzzle": "^7.9",
+        "illuminate/http": "^11.0",
+        "illuminate/support": "^11.0",
         "laracasts/flash": "^3.2",
         "laravel/framework": "^11.9",
-        "illuminate/support": "^11.0",
         "laravel/sanctum": "^4.0",
         "laravel/tinker": "^2.9",
         "rollbar/rollbar-laravel": "^8.0",
         "sentry/sentry-laravel": "^4.9",
+        "spatie/laravel-html": "^3.5",
         "spatie/laravel-query-builder": "^6.2"
     },
     "require-dev": {
