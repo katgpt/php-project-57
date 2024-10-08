@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "e16815a828a1fe09c92de81b850629ea",
+    "content-hash": "39e90d831d17776cd5953e878f0005e0",
     "packages": [
         {
             "name": "brick/math",
@@ -1108,6 +1108,84 @@
                 "source": "https://github.com/Jean85/pretty-package-versions/tree/2.0.6"
             },
             "time": "2024-03-08T09:58:59+00:00"
+        },
+        {
+            "name": "konekt/html",
+            "version": "6.5.1",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/artkonekt/html.git",
+                "reference": "93ce24c9395df9f123d0a718c90e6544cc371ffe"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/artkonekt/html/zipball/93ce24c9395df9f123d0a718c90e6544cc371ffe",
+                "reference": "93ce24c9395df9f123d0a718c90e6544cc371ffe",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "^10.0|^11.0",
+                "illuminate/routing": "^10.0|^11.0",
+                "illuminate/session": "^10.0|^11.0",
+                "illuminate/support": "^10.0|^11.0",
+                "illuminate/view": "^10.0|^11.0",
+                "php": "^8.1"
+            },
+            "replace": {
+                "laravelcollective/html": "^6.4"
+            },
+            "require-dev": {
+                "illuminate/database": "^10.0|^11.0",
+                "mockery/mockery": "^1.0",
+                "phpunit/phpunit": "^10.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "6.5.x-dev"
+                },
+                "laravel": {
+                    "providers": [
+                        "Collective\\Html\\HtmlServiceProvider"
+                    ],
+                    "aliases": {
+                        "Form": "Collective\\Html\\FormFacade",
+                        "Html": "Collective\\Html\\HtmlFacade"
+                    }
+                }
+            },
+            "autoload": {
+                "files": [
+                    "src/helpers.php"
+                ],
+                "psr-4": {
+                    "Collective\\Html\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Adam Engebretson",
+                    "email": "adam@laravelcollective.com"
+                },
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                },
+                {
+                    "name": "Attila Fulop"
+                }
+            ],
+            "description": "HTML and Form Builders for the Laravel Framework",
+            "homepage": "https://laravelcollective.com",
+            "support": {
+                "issues": "https://github.com/artkonekt/html/issues",
+                "source": "https://github.com/artkonekt/html"
+            },
+            "time": "2024-09-27T06:24:46+00:00"
         },
         {
             "name": "laracasts/flash",

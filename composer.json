@@ -9,6 +9,7 @@
         "guzzlehttp/guzzle": "^7.9",
         "illuminate/http": "^11.0",
         "illuminate/support": "^11.0",
+        "konekt/html": "^6.5",
         "laracasts/flash": "^3.2",
         "laravel/framework": "^11.9",
         "laravel/sanctum": "^4.0",
