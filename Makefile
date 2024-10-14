@@ -46,3 +46,4 @@ install:
 
 validate:
 	composer validate
+
