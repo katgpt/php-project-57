@@ -15,24 +15,41 @@ class PasswordResetTest extends TestCase
     public function testResetPasswordLinkScreenCanBeRendered(): void
     {
         $response = $this->get('/forgot-password');
+
+        // Закрываем выходные буферы
+        while (ob_get_level() > 0) {
+            ob_end_flush();
+        }
+
         $response->assertStatus(200);
     }
 
     public function testResetPasswordLinkCanBeRequested(): void
     {
         Notification::fake();
+
         $user = User::factory()->create();
+
         $this->post('/forgot-password', ['email' => $user->email]);
+
         Notification::assertSentTo($user, ResetPassword::class);
     }
 
     public function testResetPasswordScreenCanBeRendered(): void
     {
         Notification::fake();
+
         $user = User::factory()->create();
+
         $this->post('/forgot-password', ['email' => $user->email]);
+
         Notification::assertSentTo($user, ResetPassword::class, function ($notification) {
             $response = $this->get('/reset-password/' . $notification->token);
+
+            while (ob_get_level() > 0) {
+                ob_end_flush();
+            }
+
             $response->assertStatus(200);
             return true;
         });
@@ -41,8 +58,11 @@ class PasswordResetTest extends TestCase
     public function testPasswordCanBeResetWithValidToken(): void
     {
         Notification::fake();
+
         $user = User::factory()->create();
+
         $this->post('/forgot-password', ['email' => $user->email]);
+
         Notification::assertSentTo($user, ResetPassword::class, function ($notification) use ($user) {
             $response = $this->post('/reset-password', [
                 'token' => $notification->token,
@@ -50,9 +70,11 @@ class PasswordResetTest extends TestCase
                 'password' => 'password',
                 'password_confirmation' => 'password',
             ]);
+
             $response
                 ->assertSessionHasNoErrors()
                 ->assertRedirect(route('login'));
+
             return true;
         });
     }
