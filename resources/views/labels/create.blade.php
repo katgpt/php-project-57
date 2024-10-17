@@ -3,7 +3,7 @@
 
 @auth()
     <div class="grid col-span-full">
-        <h1 class="max-w-2xl mb-4 text-4xl leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">{{ __('layout.labels_create') }}</h1>
+        <h1 class="max-w-2xl mb-4 text-4xl leading-none tracking-tight md:text-5xl xl:text-6xl">{{ __('layout.labels_create') }}</h1>
 
         {{ Form::open(['url' => route('labels.store'), 'method' => 'POST', 'class' => 'w-50']) }}
         <div class="flex flex-col">

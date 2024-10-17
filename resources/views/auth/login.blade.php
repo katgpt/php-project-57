@@ -8,7 +8,7 @@
 
         <form method="POST" action="{{ route('login') }}">
             @csrf
-            <h2 class="text-center"><a href="/">{{ __('auth.email') }}</a></h2>
+            <h2 class="text-center"><a href="/">Менеджер задач</a></h2>
             <!-- Email Address -->
             <div>
                 <x-input-label for="email" :value="__('auth.email')" />
@@ -40,13 +40,12 @@
 
             <div class="flex items-center justify-end mt-4">
                 @if (Route::has('password.request'))
-                    <a class="underline text-sm text-gray-600 hover:text-gray-900 rounded-md focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500" href="{{ route('password.request') }}">
+                    <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('password.request') }}">
                         {{ __('auth.forgot password') }}
                     </a>
                 @endif
 
-                <button type="submit" class="inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-3">
-    Войти
+                <button type="submit" class="inline-flex items-center bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded ml-3">Войти</button>
             </div>
         </form>
     </x-auth-card>

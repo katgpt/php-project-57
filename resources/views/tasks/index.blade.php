@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="grid col-span-full">
-    <h1 class="max-w-2xl mb-4 text-4xl leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
+    <h1 class="max-w-2xl mb-4 text-4xl leading-none tracking-tight md:text-5xl xl:text-6xl">
         {{ __('layout.task_header') }} </h1>
     <div class="w-full flex items-center">
         <div>
@@ -61,7 +61,7 @@
                 <td>
                 @auth
                 @can('delete', $task)
-                <a href="{{ route('tasks.destroy', $task) }}"
+                <a href="{{ route('tasks.destroy', $task->id) }}"
                     data-method="delete"
                     data-confirm="{{ __('layout.table_delete_question') }}"
                     class="text-red-600 hover:text-red-900">{{ __('layout.table_delete') }}</a>

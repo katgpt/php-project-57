@@ -2,7 +2,7 @@
 @section('content')
 
 <div class="grid col-span-full">
-    <h1 class="max-w-2xl mb-4 text-4xl leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
+    <h1 class="max-w-2xl mb-4 text-4xl leading-none tracking-tight md:text-5xl xl:text-6xl">
         {{ __('layout.task_statuses_header') }} </h1>
     @auth()
     <div>
