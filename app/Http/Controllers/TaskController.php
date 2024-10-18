@@ -20,14 +20,12 @@ class TaskController extends Controller
     {
         $taskStatuses = TaskStatus::pluck('name', 'id')->all();
         $users = User::pluck('name', 'id')->all();
-        $tasks = QueryBuilder::for(task::class)
-        ->allowedFilters(
-            [
+        $tasks = QueryBuilder::for(Task::class)
+            ->allowedFilters([
                 AllowedFilter::exact('status_id'),
                 AllowedFilter::exact('created_by_id'),
                 AllowedFilter::exact('assigned_to_id')
-            ]
-        )
+            ])
             ->paginate(15);
 
         return view('tasks.index', compact('tasks', 'taskStatuses', 'users'));
@@ -38,26 +36,31 @@ class TaskController extends Controller
         $taskStatuses = TaskStatus::pluck('name', 'id');
         $users = User::pluck('name', 'id');
         $labels = Label::pluck('name', 'id');
+        
         return view('tasks.create', compact('taskStatuses', 'users', 'labels'));
     }
 
     public function store(StoreTaskRequest $request)
     {
         $inputData = $request->validated();
-
         $user = Auth::user();
         $task = $user->tasks()->make();
         $task->fill($inputData);
         $task->save();
         $labels = collect($request->input('labels'))->filter(fn($label) => isset($label));
         $task->labels()->attach($labels);
+
         flash(__('tasks.Task has been added successfully'))->success();
+
         return redirect()->route('tasks.index');
     }
 
     public function show(Task $task)
     {
-        return view('tasks.show', compact('task'));
+        return view('tasks.show', [
+            'task' => $task,
+            'user' => Auth::user(), // Передаем пользователя в представление
+        ]);
     }
 
     public function edit(Task $task)
@@ -65,6 +68,7 @@ class TaskController extends Controller
         $taskStatuses = TaskStatus::pluck('name', 'id');
         $users = User::pluck('name', 'id');
         $labels = Label::pluck('name', 'id');
+        
         return view('tasks.edit', compact('task', 'taskStatuses', 'users', 'labels'));
     }
 
@@ -79,11 +83,11 @@ class TaskController extends Controller
 
         $task->fill($inputData);
         $task->save();
-
         $labels = collect($request->input('labels'))->filter(fn($label) => isset($label));
         $task->labels()->sync($labels);
 
         flash(__('tasks.Task has been updated successfully'))->success();
+
         return redirect()->route('tasks.index');
     }
 
@@ -91,7 +95,9 @@ class TaskController extends Controller
     {
         $task->labels()->detach();
         $task->delete();
+
         flash(__('tasks.Task has been deleted successfully'))->success();
+
         return redirect()->route('tasks.index');
     }
 }

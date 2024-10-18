@@ -18,11 +18,13 @@ Route::get('/dashboard', function () {
 // Маршруты для профиля
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
 
 require __DIR__ . '/auth.php';
+
 Route::resource('task_statuses', TaskStatusController::class)->except(['show']);
 Route::resource('tasks', TaskController::class);
 Route::resource('labels', LabelController::class)->except(['show']);
