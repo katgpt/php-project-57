@@ -2,11 +2,8 @@
 
 namespace Database\Seeders;
 
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
-use App\Models\Label;
-use App\Models\Task;
-use App\Models\User;
 use Illuminate\Database\Seeder;
+use App\Models\User;  // Необходимо добавить эту строку
 
 class DatabaseSeeder extends Seeder
 {
@@ -17,13 +14,14 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        // Сначала создаем пользователей
         User::factory(20)->create();
 
         $this->call([
-            LabelSeeder::class,
-            TaskStatusSeeder::class,
-            TaskSeeder::class,
-            LabelTaskSeeder::class,
+            TaskStatusSeeder::class, // Создаем статусы задач
+            LabelSeeder::class,      // Создаем метки
+            TaskSeeder::class,       // Создаем задачи
+            LabelTaskSeeder::class,  // Связываем метки с задачами
         ]);
     }
 }
