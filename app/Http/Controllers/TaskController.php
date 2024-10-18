@@ -36,7 +36,6 @@ class TaskController extends Controller
         $taskStatuses = TaskStatus::pluck('name', 'id');
         $users = User::pluck('name', 'id');
         $labels = Label::pluck('name', 'id');
-        
         return view('tasks.create', compact('taskStatuses', 'users', 'labels'));
     }
 
@@ -68,7 +67,6 @@ class TaskController extends Controller
         $taskStatuses = TaskStatus::pluck('name', 'id');
         $users = User::pluck('name', 'id');
         $labels = Label::pluck('name', 'id');
-        
         return view('tasks.edit', compact('task', 'taskStatuses', 'users', 'labels'));
     }
 
