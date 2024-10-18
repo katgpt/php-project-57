@@ -1,6 +1,6 @@
 services:
   - type: web
-    name: my-laravel-app
+    name: php-project-57
     env: php
     plan: starter
     buildCommand: 
