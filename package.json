@@ -2,6 +2,7 @@
     "private": true,
     "type": "module",
     "scripts": {
+        "start-frontend": "npm run dev",
         "dev": "vite",
         "build": "vite build",
         "watch": "vite build --watch"
