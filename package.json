@@ -2,10 +2,10 @@
     "private": true,
     "type": "module",
     "scripts": {
-        "start-frontend": "npm run dev",
         "dev": "vite",
         "build": "vite build",
-        "watch": "vite build --watch"
+        "watch": "vite build --watch",
+        "start-frontend": "vite"
     },
     "devDependencies": {
         "@tailwindcss/forms": "^0.5.2",
@@ -22,4 +22,10 @@
         "@rails/ujs": "^7.0.4",
         "bootstrap": "^5.2.2"
     }
+}{
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start-frontend": "vite"
+  }
 }
