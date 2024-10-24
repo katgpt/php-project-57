@@ -12,7 +12,7 @@ setup:
 	php artisan migrate
 	php artisan db:seed
 	npm ci
-	
+	npm run build
 
 watch:
 	npm run watch
