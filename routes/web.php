@@ -12,10 +12,6 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/dashboard', function () {
-    return redirect('/');
-})->middleware(['auth', 'verified'])->name('dashboard');
-
-Route::get('/dashboard', function () {
     return view('dashboard');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
