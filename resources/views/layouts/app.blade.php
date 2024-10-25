@@ -5,9 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="csrf-param" content="_token" />
-
     <title>{{ __('layout.title') }}</title>
-
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
 <body class="antialiased">
@@ -38,7 +36,6 @@
                         </a>
                     </div>
                 @endauth
-
                 <div class="items-center justify-between hidden w-full lg:flex lg:w-auto lg:order-1">
                     <ul class="flex flex-col mt-4 font-medium lg:flex-row lg:space-x-8 lg:mt-0">
                         <li>
