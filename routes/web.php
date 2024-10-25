@@ -9,7 +9,7 @@ use App\Http\Controllers\LabelController;
 
 Route::get('/', function () {
     return view('welcome');
-})->name('welcome');
+})->name('welcome.blade');
 
 Route::get('/', function () {
     return view('dashboard');
