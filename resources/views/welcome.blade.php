@@ -3,11 +3,10 @@
 @section('content')
     <div class="mr-auto place-self-center lg:col-span-7">
         <h1 class="max-w-2xl mb-4 text-4xl font-extrabold leading-none tracking-tight md:text-5xl xl:text-6xl dark:text-white">
-            {{ __('layout.home_content') }} 
             Привет от Хекслета!
         </h1>
         <p class="max-w-2xl mb-6 font-light text-gray-500 lg:mb-8 md:text-lg lg:text-xl dark:text-gray-400">
-            {{ __('layout.home_content_2') }} 
+            Это простой менеджер задач на Laravel
         </p>
         <div class="space-y-4 sm:flex sm:space-y-0 sm:space-x-4">
             <a href="https://github.com/katgpt/php-project-57"
