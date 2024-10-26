@@ -49,37 +49,7 @@
             </tr>
         </thead>
         <tbody>
-            @foreach($tasks as $task)
-                <tr class="border-b border-dashed text-left">
-                    <td>{{ $task->id }}</td>
-                    <td>{{ $task->status->name }}</td>
-                    <td><a class="text-blue-600 hover:text-blue-900" href="{{ route('tasks.show', $task->id) }}">{{ $task->name }}</a></td>
-                    <td>{{ $task->createdByUser->name }}</td>
-                    <td>{{ $task->assignedToUser->name ?? "" }}</td>
-                    <td>{{ $task->created_at->format('d.m.Y') }}</td>
-                    <td>
-                        @can('delete', $task)
-                            <a data-method="delete" data-confirm="{{ __('strings.are you sure') }}" class="text-red-600 hover:text-red-900" href="{{ route('tasks.destroy', $task->id) }}">{{ __('strings.delete') }}</a>
-                        @endcan
-                        @can('update', $task)
-                            <a class="text-blue-600 hover:text-blue-900" href="{{ route('tasks.edit', $task) }}">{{ __('strings.edit') }}</a>
-                        @endcan
-                    </td>
-                </tr>
-            @endforeach
-        </tbody>
-    </table>
-    <div class="mt-4">
-        {{ $tasks->links() }}
-    </div>
-</div>
-@endsection
-
-
-
-
-
-            <!--@foreach ($tasks as $task)
+            @foreach ($tasks as $task)
                 <tr class="border-b border-dashed text-left">
                     <td>{{ $task->id }}</td>
                     <td>{{ $task->status->name }}</td>
@@ -107,8 +77,19 @@
                     @endcanany
                 </tr>
             @endforeach
+        </tbody>
+    </table>
+    <div class="mt-4">
+        {{ $tasks->links() }}
+    </div>
+</div>
+@endsection
 
-                    @foreach($tasks as $task)  мой-------------------
+
+
+
+
+            <!--@foreach($tasks as $task)  мой-------------------
             <tr class="border-b border-dashed text-left">
                 <td>{{ $task->id }}</td>
                 <td>{{ $taskStatuses[$task->status_id] }}</td>
