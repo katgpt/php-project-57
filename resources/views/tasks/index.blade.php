@@ -65,7 +65,7 @@
                 <form action="{{ route('tasks.destroy', $task) }}" method="POST" onsubmit="return confirm('{{ __("layout.table_delete_question") }}');">
                     @csrf
                     @method('DELETE')
-                    <button type="submit" class="text-red-600 hover:text-red-900 delete-task">{{ __('layout.table_delete') }}</button>
+                    <a type="submit" class="text-red-600 hover:text-red-900 delete-task">{{ __('layout.table_delete') }}</a>
                 </form>
                 @endcan
                 <a href="{{ route('tasks.edit', $task) }}" class="text-blue-600 hover:text-blue-900">{{ __('layout.table_edit') }}</a>

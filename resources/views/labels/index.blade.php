@@ -35,8 +35,8 @@
                 <td>
                     <form action="{{ route('labels.destroy', $label) }}" method="POST" onsubmit="return confirm('{{ __("layout.table_delete_question") }}');">
                         @csrf
-                        @method('delete')
-                        <a type="submit" class="text-red-600 hover:text-red-900 delete-label">{{ __('layout.table_delete') }}</a>
+                        @method('DELETE')
+                        <button type="submit" class="text-red-600 hover:text-red-900 delete-label">{{ __('layout.table_delete') }}</button>
                     </form>
                     <a class="text-blue-600 hover:text-blue-900" href="{{ route('labels.edit', $label) }}">
                         {{ __('layout.table_edit') }}
