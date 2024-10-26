@@ -12,8 +12,7 @@ Route::get('/', function () {
 })->name('welcome');
 
 Route::get('/dashboard', function () {
-    return view('/');
-    /*return redirect('/');*/
+    return redirect('/');
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 // Маршруты для профиля
