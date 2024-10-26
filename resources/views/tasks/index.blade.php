@@ -61,9 +61,11 @@
                 <td>
                 @auth
                 @can('delete', $task)
-                    <a class="text-red-600 hover:text-red-900" href="{{ route('tasks.destroy', $task) }}" data-confirm="{{ __('Are you sure?') }}" data-method="delete" rel="nofollow">
-                        {{ __('Delete') }}
-                    </a>
+                    <form action="{{ route('tasks.destroy', $task) }}" method="POST" onsubmit="return confirm('{{ __("Are you sure?") }}');">
+                        @csrf
+                        @method('DELETE')
+                        <button type="submit" class="text-red-600 hover:text-red-900">{{ __('Delete') }}</button>
+                    </form>
                 @endcan
                 <a href="{{ route('tasks.edit', $task) }}" class="text-blue-600 hover:text-blue-900">{{ __('layout.table_edit') }}</a>
                 @endauth
