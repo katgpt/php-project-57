@@ -7,32 +7,31 @@
     </h1>
     <div class="w-full flex items-center">
         <div>
-            {{ Form::open(['route' => 'tasks.index','method' => 'GET', 'class' => "form-inline"]) }}
-                <div class="flex">
-                    <div>
-                        {{ Form::select('filter[status_id]', $taskStatuses, request()->input('filter.status_id'), ['class' => 'form-control mr-2', 'placeholder' =>  __('layout.table_task_status')]) }}
-                    </div>
-                    <div>
-                        {{ Form::select('filter[created_by_id]', $users, request()->input('filter.created_by_id'), ['class' => 'form-control mr-2', 'placeholder' =>  __('layout.table_creater')]) }}
-                    </div>
-                    <div>
-                        {{ Form::select('filter[assigned_to_id]', $users, request()->input('filter.assigned_to_id'), ['class' => 'form-control mr-2', 'placeholder' =>  __('layout.table_assigned')]) }}
-                    </div>
-                    <div>
-                        {{ Form::submit(__('layout.create_apply'), ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
-                    </div>
+            {{ Form::open(['route' => 'tasks.index', 'method' => 'GET', 'class' => "form-inline"]) }}
+            <div class="flex">
+                <div>
+                    {{ Form::select('filter[status_id]', $taskStatuses, request()->input('filter.status_id'), ['class' => 'form-control mr-2', 'placeholder' =>  __('layout.table_task_status')]) }}
                 </div>
+                <div>
+                    {{ Form::select('filter[created_by_id]', $users, request()->input('filter.created_by_id'), ['class' => 'form-control mr-2', 'placeholder' =>  __('layout.table_creater')]) }}
+                </div>
+                <div>
+                    {{ Form::select('filter[assigned_to_id]', $users, request()->input('filter.assigned_to_id'), ['class' => 'form-control mr-2', 'placeholder' =>  __('layout.table_assigned')]) }}
+                </div>
+                <div>
+                    {{ Form::submit(__('layout.create_apply'), ['class' => 'bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded']) }}
+                </div>
+            </div>
             {{ Form::close() }}
         </div>
-        <div class="ml-auto">
-    </div>
-    <div class="d-grid gap-2 d-md-flex justify-content-md-end">
-    @auth()
-        <a href="{{ route('tasks.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
-            {{ __('layout.create_button_task') }}
-        </a>
-    @endauth
-    </div>
+        <div class="ml-auto"></div>
+        <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+        @auth()
+            <a href="{{ route('tasks.create') }}" class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+                {{ __('layout.create_button_task') }}
+            </a>
+        @endauth
+        </div>
     </div>
     <table class="mt-4">
         <thead class="border-b-2 border-solid border-black text-left" style="text-align: left">
@@ -44,7 +43,7 @@
                 <th>{{ __('layout.table_assigned') }}</th>
                 <th>{{ __('layout.table_date_of_creation') }}</th>
                 @auth()
-                    <th>{{ __('layout.table_actions') }}</th>
+                <th>{{ __('layout.table_actions') }}</th>
                 @endauth
             </tr>
         </thead>
@@ -62,12 +61,9 @@
                 <td>
                 @auth
                 @can('delete', $task)
-                    <a class="text-red-600 hover:text-red-900"
-                       href="{{ route('tasks.destroy', $task) }}"
-                       data-confirm="{{ __('Are you sure?') }}"
-                       data-method="delete"
-                       rel="nofollow">
-                        {{ __('Delete') }}</a>
+                    <a class="text-red-600 hover:text-red-900" href="{{ route('tasks.destroy', $task) }}" data-confirm="{{ __('Are you sure?') }}" data-method="delete" rel="nofollow">
+                        {{ __('Delete') }}
+                    </a>
                 @endcan
                 <a href="{{ route('tasks.edit', $task) }}" class="text-blue-600 hover:text-blue-900">{{ __('layout.table_edit') }}</a>
                 @endauth
@@ -81,53 +77,3 @@
     </div>
 </div>
 @endsection
-
-
-
-            <!--@foreach($tasks as $task)
-                <tr class="border-b border-dashed text-left">
-                    <td>{{ $task->id }}</td>
-                    <td>{{ $task->status->name }}</td>
-                    <td><a class="text-blue-600 hover:text-blue-900" href="{{ route('tasks.show', $task->id) }}">{{ $task->name }}</a></td>
-                    <td>{{ $task->createdByUser->name }}</td>
-                    <td>{{ $task->assignedToUser->name ?? "" }}</td>
-                    <td>{{ $task->created_at->format('d.m.Y') }}</td>
-                    <td>
-                        @can('delete', $task)
-                            <a data-method="delete" data-confirm="{{ __('strings.are you sure') }}" class="text-red-600 hover:text-red-900" href="{{ route('tasks.destroy', $task->id) }}">{{ __('strings.delete') }}</a>
-                        @endcan
-                        @can('update', $task)
-                            <a class="text-blue-600 hover:text-blue-900" href="{{ route('tasks.edit', $task) }}">{{ __('strings.edit') }}</a>
-                        @endcan
-                    </td>
-                </tr>
-            @endforeach
-
-            @foreach ($tasks as $task)
-                <tr class="border-b border-dashed text-left">
-                    <td>{{ $task->id }}</td>
-                    <td>{{ $task->status->name }}</td>
-                    <td><a class="text-blue-600 hover:text-blue-900"
-                           href="{{ route('tasks.show', $task) }}">{{ $task->name }}</a></td>
-                    <td>{{ $task->creator->name }}</td>
-                    <td>{{ $task->executor->name ?? '' }}</td>
-                    <td>{{ $task->created_at->format('d.m.Y') }}</td>
-                    @canany(['update', 'delete'], $task)
-                        <td>
-                            @can('delete', $task)
-                                <a class="text-red-600 hover:text-red-900"
-                                   href="{{ route('tasks.destroy', $task) }}"
-                                   data-confirm="{{ __('Are you sure?') }}"
-                                   data-method="delete"
-                                   rel="nofollow">
-                                    {{ __('Delete') }}</a>
-                            @endcan
-                            @can('update', $task)
-                                <a class="text-blue-600 hover:text-blue-900"
-                                   href="{{ route('tasks.edit', $task) }}">
-                                    {{ __('Edit') }}</a>
-                            @endcan
-                        </td>
-                    @endcanany
-                </tr>
-            @endforeach-->
