@@ -20,7 +20,7 @@ class TaskSeeder extends Seeder
             ['name' => 'выполняется'],
             ['name' => 'в архиве'],
         ];
-        
+                
         foreach ($statusNames as $statusName) {
             TaskStatus::create($statusName);
         }
