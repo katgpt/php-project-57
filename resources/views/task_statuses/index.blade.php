@@ -31,10 +31,10 @@
                 <td>{{ $taskStatus->created_at->format('d.m.Y') }}</td>
                 @auth()
                 <td>
-                    <form action="{{ route('task_statuses.destroy', $taskStatus) }}" method="POST" onsubmit="return confirm('{{ __("layout.table_delete_question") }}');">
+                    <form action="{{ route('task_statuses.destroy', $taskStatus) }}" method="POST" onclick="return confirm('{{ __("layout.table_delete_question") }}');">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-red-600 hover:text-red-900">{{ __('layout.table_delete') }}</button>
+                        <a href="#" class="text-red-600 hover:text-red-900">{{ __('layout.table_delete') }}</a>
                     </form>
                     <a class="text-blue-600 hover:text-blue-900" href="{{ route('task_statuses.edit', $taskStatus) }}">
                         {{ __('layout.table_edit') }}
