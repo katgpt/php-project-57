@@ -61,10 +61,10 @@
                 <td>
                 @auth
                 @can('delete', $task)
-                    <form action="{{ route('tasks.destroy', $task) }}" method="POST" onsubmit="return confirm('{{ __("layout.table_delete_question") }}');">
+                    <a href="#" class="text-red-500 hover:text-red-700 ml-2" onclick="event.preventDefault(); if(confirm('Вы уверены, что хотите удалить эту задачу?')) { document.getElementById('delete-form-{{ $task->id }}').submit(); }">Удалить</a>
+                    <form id="delete-form-{{ $task->id }}" action="{{ route('tasks.destroy', $task->id) }}" method="POST" class="hidden">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-red-600 hover:text-red-900">{{ __('layout.table_delete') }}</button>
                     </form>
                 @endcan
                 <a href="{{ route('tasks.edit', $task) }}" class="text-blue-600 hover:text-blue-900">{{ __('layout.table_edit') }}</a>

@@ -31,10 +31,10 @@
                 <td>{{ $taskStatus->created_at->format('d.m.Y') }}</td>
                 @auth()
                 <td>
-                    <form action="{{ route('task_statuses.destroy', $taskStatus) }}" method="POST" onsubmit="return confirm('{{ __("layout.table_delete_question") }}');">
+                    <a href="#" class="text-red-500 hover:text-red-700 ml-2" onclick="event.preventDefault(); if(confirm('Вы уверены, что хотите удалить этот статус?')) { document.getElementById('delete-form-{{ $taskStatus->id }}').submit(); }">Удалить</a>
+                    <form id="delete-form-{{ $taskStatus->id }}" action="{{ route('task_statuses.destroy', $taskStatus->id) }}" method="POST" class="hidden">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-red-600 hover:text-red-900">{{ __('layout.table_delete') }}</button>
                     </form>
                     <a class="text-blue-600 hover:text-blue-900" href="{{ route('task_statuses.edit', $taskStatus) }}">
                         {{ __('layout.table_edit') }}

@@ -38,9 +38,7 @@
                         @csrf
                         @method('DELETE')
                     </form>
-                    <a class="text-blue-600 hover:text-blue-900" href="{{ route('labels.edit', $label) }}">
-                        {{ __('layout.table_edit') }}
-                    </a>
+                    <a href="{{ route('labels.edit', $label->id) }}" class="text-blue-500 hover:text-blue-700">{{ __('layout.table_edit') }}</a>
                 </td>
                 @endauth
             </tr>
