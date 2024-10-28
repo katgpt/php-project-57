@@ -28,7 +28,7 @@ class ProfileController extends Controller
     {
         $user = $request->user();
 
-        if ($user) {
+        if (isset($user)) {
             $user->fill($request->validated());
 
             if ($user->isDirty('email')) {
@@ -52,7 +52,7 @@ class ProfileController extends Controller
 
         $user = $request->user();
 
-        if ($user) {
+        if (isset($user)) {
             Auth::logout();
             $user->delete();
             $request->session()->invalidate();
