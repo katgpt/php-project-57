@@ -13,7 +13,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      'rails-ujs': 'node_modules/@rails/ujs/lib/assets/compiled/rails-ujs.js',
+      'rails-ujs': 'node_modules/@rails/ujs/app/assets/javascripts/rails-ujs.js',
     }
   },
   build: {
