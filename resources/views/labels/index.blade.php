@@ -33,10 +33,10 @@
                 <td>{{ $label->created_at->format('d.m.Y') }}</td>
                 @auth()
                 <td>
-                    <form action="{{ route('labels.destroy', $label) }}" method="POST" onsubmit="return confirm('{{ __("layout.table_delete_question") }}');">
+                    <a href="#" class="text-red-500 hover:text-red-700 ml-2" onclick="event.preventDefault(); if(confirm('Вы уверены, что хотите удалить эту метку?')) { document.getElementById('delete-form-{{ $label->id }}').submit(); }">Удалить</a>
+                    <form id="delete-form-{{ $label->id }}" action="{{ route('labels.destroy', $label->id) }}" method="POST" class="hidden">
                         @csrf
                         @method('DELETE')
-                        <button type="submit" class="text-red-600 hover:text-red-900 delete-label">{{ __('layout.table_delete') }}</button>
                     </form>
                     <a class="text-blue-600 hover:text-blue-900" href="{{ route('labels.edit', $label) }}">
                         {{ __('layout.table_edit') }}
