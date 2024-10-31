@@ -1,6 +1,5 @@
 start:
-	# php artisan serve --host 0.0.0.0
-	./vendor/bin/sail up -d
+	php artisan serve --host 0.0.0.0
 
 start-frontend:
 	npm run dev
