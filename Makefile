@@ -1,5 +1,6 @@
 start:
-	php artisan serve --host 0.0.0.0
+	# php artisan serve --host 0.0.0.0
+	php artisan migrate:refresh --seed --force && php artisan serve
 
 start-frontend:
 	npm run dev
