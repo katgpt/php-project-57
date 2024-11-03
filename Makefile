@@ -2,6 +2,7 @@ start:
 	composer install
 	npm install
 	npm run dev
+	PORT ?= 10000
 	php artisan migrate --force
 	php artisan serve --host 0.0.0.0 --port 10000
 
