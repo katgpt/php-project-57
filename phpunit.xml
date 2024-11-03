@@ -32,7 +32,7 @@
     </php>
     <coverage>
         <report>
-            <clover outputFile="build/logs/clover.xml"/>
+            <clover outputFile="/home/runner/work/php-project-57/build/logs/clover.xml"/>
         </report>
     </coverage>
 </phpunit>
