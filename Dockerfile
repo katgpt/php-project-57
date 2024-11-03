@@ -29,4 +29,4 @@ RUN npm run build
 ENV PATH="/app/node_modules/.bin:$PATH"
 
 # Запускаем фронтенд и Laravel сервер
-CMD ["bash", "-c", "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=10000"]
+CMD ["bash", "-c", "php artisan migrate --force && php artisan serve --host=0.0.0.0 --port=$PORT"]
