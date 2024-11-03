@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1730359925">
-  <project timestamp="1730359925">
+<coverage generated="1730657042">
+  <project timestamp="1730657042">
     <package name="App\Console">
       <file name="/home/user/php-project-57/app/Console/Kernel.php">
         <class name="App\Console\Kernel" namespace="App\Console">
