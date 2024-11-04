@@ -1,52 +1,32 @@
 start:
-	composer install
-	npm install
-	npm run dev
-	php artisan migrate --force
-	php artisan serve --host 0.0.0.0 --port 10000
+    php artisan serve --host 0.0.0.0
 
 start-frontend:
-	npm run dev
-
-setup:
-	composer install
-	cp -n .env.example .env
-	php artisan key:gen --ansi
-	touch database/database.sqlite
-	php artisan migrate
-	php artisan db:seed
-	npm ci
-	npm run build
-
-watch:
-	npm run watch
-
-migrate:
-	php artisan migrate
-
-console:
-	php artisan tinker
-
-log:
-	tail -f storage/logs/laravel.log
-
-test:
-	composer exec --verbose phpunit tests
-
-deploy:
-	git push heroku
-
-lint:
-	composer exec phpcs -- --standard=PSR12 app routes tests
-
-lint-fix:
-	composer phpcbf -- --standard=PSR12 app routes tests database
-
-test-coverage:
-	composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
+    npm run dev
 
 install:
-	composer install
+    composer install && npm install
 
-validate:
-	composer validate
+database:
+    touch database/database.sqlite
+
+migrate:
+    php artisan migrate
+
+seed:
+    php artisan db:seed
+
+test:
+    php artisan test
+
+test-coverage:
+    XDEBUG_MODE=coverage php artisan test --coverage-clover build/logs/clover.xml
+
+lint:
+    composer exec --verbose phpcs
+
+lint-fix:
+    composer exec --verbose phpcbf
+
+phpstan:
+    vendor/bin/phpstan analyse -c phpstan.neon
