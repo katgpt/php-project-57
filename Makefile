@@ -25,7 +25,7 @@ test:
 	php artisan test
 
 test-coverage:
-	XDEBUG_MODE=coverage php artisan test --coverage-clover build/logs/clover.xml
+	composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
 
 lint:
 	composer exec phpcs -- --standard=PSR12 app routes tests
