@@ -1,5 +1,5 @@
 start:
-	php artisan serve --host 0.0.0.0
+	php artisan serve --host=$APP_HOST --port=$APP_PORT
 
 start-frontend:
 	npm run dev
