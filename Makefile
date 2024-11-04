@@ -8,6 +8,10 @@ start-frontend:
 install:
 	# composer install && npm install
 
+setup: 
+	composer install
+	npm install
+
 database:
 	touch database/database.sqlite
 
