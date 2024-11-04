@@ -3,6 +3,7 @@ start:
 
 setup:
 	npm run dev
+	npm install vite
 	composer install && npm install
 
 watch:
