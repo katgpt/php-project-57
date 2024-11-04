@@ -3,9 +3,10 @@ start:
 
 start-frontend:
     npm run dev
+    composer install && npm install
 
 install:
-    composer install && npm install
+    # composer install && npm install
 
 database:
     touch database/database.sqlite
