@@ -8,25 +8,8 @@ setup:
 install:
 	# composer install && npm install
 
-start:
-	composer install
-	npm install
-	npm run dev
-	php artisan migrate --force
-	php artisan serve --host 0.0.0.0 --port 10000
-
 start-frontend:
 	npm run dev
-
-setup2:
-	composer install
-	cp -n .env.example .env
-	php artisan key:gen --ansi
-	touch database/database.sqlite
-	php artisan migrate
-	php artisan db:seed
-	npm ci
-	npm run build
 
 watch:
 	npm run watch
