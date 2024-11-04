@@ -3,7 +3,7 @@ start:
 	npm install
 	npm run dev
 	php artisan migrate --force
-	php artisan serve --host 0.0.0.0 --port $PORT
+	php artisan serve --host=$APP_HOST --port=$APP_PORT
 
 start-frontend:
 	npm run dev
