@@ -2,9 +2,8 @@ start:
 	php artisan serve --host=0.0.0.0 --port=10000
 
 setup:
-	npm run dev
-	npm install vite
 	composer install && npm install
+	npm run dev
 
 watch:
 	npm run watch
