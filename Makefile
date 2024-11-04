@@ -1,9 +1,9 @@
 start:
-    php artisan serve --host=0.0.0.0 --port=$PORT
+	php artisan serve --host=0.0.0.0 --port=10000
 
 start-frontend:
-    npm run dev
-    composer install && npm install
+	npm run dev
+	composer install && npm install
 
 setup:
 	npm run dev
