@@ -2,9 +2,11 @@ start:
 	php artisan serve --host=0.0.0.0 --port=10000
 
 setup:
-	composer install && npm install
-	npm run build
+	composer install
+	npm install
 	npm run dev
+	php artisan migrate --force
+	php artisan serve --host 0.0.0.0 --port 10000
 
 watch:
 	npm run watch
