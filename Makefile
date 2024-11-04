@@ -1,12 +1,18 @@
 start:
 	php artisan serve --host=0.0.0.0 --port=10000
 
-setup:
-	composer install && npm install
-	npm run dev
-
 start-frontend:
 	npm run dev
+
+setup:
+	composer install
+	cp -n .env.example .env
+	php artisan key:gen --ansi
+	touch database/database.sqlite
+	php artisan migrate
+	php artisan db:seed
+	npm ci
+	npm run build
 
 watch:
 	npm run watch
