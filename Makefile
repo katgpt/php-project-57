@@ -5,9 +5,6 @@ setup:
 	npm run dev
 	composer install && npm install
 
-install:
-	# composer install && npm install
-
 start-frontend:
 	npm run dev
 
