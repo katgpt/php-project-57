@@ -28,10 +28,10 @@ test-coverage:
 	XDEBUG_MODE=coverage php artisan test --coverage-clover build/logs/clover.xml
 
 lint:
-	composer exec --verbose phpcs
+	composer exec phpcs -- --standard=PSR12 app routes tests
 
 lint-fix:
-	composer exec --verbose phpcbf
+	composer phpcbf -- --standard=PSR12 app routes tests database
 
 phpstan:
 	vendor/bin/phpstan analyse -c phpstan.neon
