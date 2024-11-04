@@ -5,27 +5,33 @@ start-frontend:
 	npm run dev
 	composer install && npm install
 
-install:
-	# composer install && npm install
-
-setup: 
+setup:
 	composer install
-	npm install
-
-database:
+	cp -n .env.example .env
+	php artisan key:gen --ansi
 	touch database/database.sqlite
+	php artisan migrate
+	php artisan db:seed
+	npm ci
+	npm run build
+
+watch:
+	npm run watch
 
 migrate:
 	php artisan migrate
 
-seed:
-	php artisan db:seed
+console:
+	php artisan tinker
+
+log:
+	tail -f storage/logs/laravel.log
 
 test:
 	composer exec --verbose phpunit tests
 
-test-coverage:
-	composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
+deploy:
+	git push heroku
 
 lint:
 	composer exec phpcs -- --standard=PSR12 app routes tests
@@ -33,5 +39,11 @@ lint:
 lint-fix:
 	composer phpcbf -- --standard=PSR12 app routes tests database
 
-phpstan:
-	vendor/bin/phpstan analyse -c phpstan.neon
+test-coverage:
+	composer exec --verbose phpunit tests -- --coverage-clover build/logs/clover.xml
+
+install:
+	composer install
+
+validate:
+	composer validate
