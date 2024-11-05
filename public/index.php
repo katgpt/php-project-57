@@ -44,17 +44,12 @@ require __DIR__ . '/../vendor/autoload.php';
 |
 */
 
+$app = include_once __DIR__ . '/../bootstrap/app.php';
 
-try {
-    $app = include_once __DIR__ . '/../bootstrap/app.php';
+$kernel = $app->make(Kernel::class);
 
-    $kernel = $app->make(Kernel::class);
+$response = $kernel->handle(
+    $request = Request::capture()
+)->send();
 
-    $response = $kernel->handle(
-        $request = Request::capture()
-    )->send();
-
-    $kernel->terminate($request, $response);
-} catch (\Throwable $e) {
-    echo $e->getMessage();
-}
+$kernel->terminate($request, $response);
