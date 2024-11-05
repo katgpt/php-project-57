@@ -45,7 +45,6 @@ require __DIR__ . '/../vendor/autoload.php';
 */
 
 
-try catch
 try {
     $app = include_once __DIR__ . '/../bootstrap/app.php';
 
