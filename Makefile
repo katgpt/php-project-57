@@ -43,6 +43,5 @@ test-coverage:
 
 install:
 	composer install
-
 validate:
 	composer validate
